@@ -64,7 +64,7 @@ public class SnowFallView extends View implements OnTouchListener {
 			animation.initialize(10, 10, 10, 10);
 			animation.setInterpolator(interpolator);
 
-			coords[i] = new int[] { random.nextInt(width - 30), -30 };
+			coords[i] = new int[] { random.nextInt(width - 30), -70 };
 
 			drawables.add(new AnimateDrawable(snow_flake, animation));
 			animation.setStartOffset(random.nextInt(20 * height));
