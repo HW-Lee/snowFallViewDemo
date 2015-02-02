@@ -3,8 +3,6 @@ package com.hwlee.snowfallviewdmo;
 import android.app.Activity;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
 
 public class MainActivity extends Activity {
 
@@ -14,6 +12,7 @@ public class MainActivity extends Activity {
 		setContentView(R.layout.activity_main);
 		SnowFallView v = (SnowFallView)findViewById(R.id.snowWindow);
 		v.changeState();
+		v.setSnowFlake(getApplicationContext().getResources().getDrawable(R.drawable.snowflake02));
 	}
 	
 	public class DownloadSnowFlakeTask extends AsyncTask<String, Void, Integer> {

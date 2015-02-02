@@ -4,7 +4,9 @@ import java.util.ArrayList;
 import java.util.Random;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
@@ -23,43 +25,31 @@ public class SnowFallView extends View implements OnTouchListener {
 	private int snow_flake_count = 10;
 	private final ArrayList<Drawable> drawables = new ArrayList<Drawable>();
 	private int[][] coords;
-	private final Drawable snow_flake;
+	private Drawable snow_flake;
 	private boolean flag = true;
 
 	public SnowFallView(Context context) {
 		super(context);
-		// TODO Auto-generated constructor stub
-		snow_flake = context.getResources().getDrawable(R.drawable.snowflake);
-		snow_flake.setBounds(0, 0, snow_flake.getIntrinsicWidth(),
-				snow_flake.getIntrinsicHeight());
-		setOnTouchListener(this);
 		parentContext = context;
+		setOnTouchListener(this);
 	}
 
 	public SnowFallView(Context context, AttributeSet attrs) {
 		super(context, attrs);
-		// TODO Auto-generated constructor stub
-		snow_flake = context.getResources().getDrawable(R.drawable.snowflake);
-		snow_flake.setBounds(0, 0, snow_flake.getIntrinsicWidth(),
-				snow_flake.getIntrinsicHeight());
-		setOnTouchListener(this);
 		parentContext = context;
+		setOnTouchListener(this);
 	}
 
 	public SnowFallView(Context context, AttributeSet attrs, int defStyleAttr) {
 		super(context, attrs, defStyleAttr);
-		// TODO Auto-generated constructor stub
-		snow_flake = context.getResources().getDrawable(R.drawable.snowflake);
-		snow_flake.setBounds(0, 0, snow_flake.getIntrinsicWidth(),
-				snow_flake.getIntrinsicHeight());
-		setOnTouchListener(this);
 		parentContext = context;
+		setOnTouchListener(this);
 	}
 
 	@Override
 	protected void onSizeChanged(int width, int height, int oldw, int oldh) {
 		super.onSizeChanged(width, height, oldw, oldh);
-		if (!flag) return;
+		if (!flag || snow_flake == null) return;
 		Random random = new Random();
 		Interpolator interpolator = new LinearInterpolator();
 
@@ -84,7 +74,7 @@ public class SnowFallView extends View implements OnTouchListener {
 
 	@Override
 	protected void onDraw(Canvas canvas) {
-		if (!flag) return;
+		if (!flag || snow_flake == null) return;
 		for (int i = 0; i < snow_flake_count; i++) {
 			Drawable drawable = drawables.get(i);
 			canvas.save();
@@ -120,6 +110,18 @@ public class SnowFallView extends View implements OnTouchListener {
 		}
 		flag = !flag;
 		setLayoutParams(params);
+	}
+	
+	public void setSnowFlake(Bitmap bmp) {
+		snow_flake = new BitmapDrawable(parentContext.getResources(), bmp);
+		setSnowFlake(snow_flake);
+	}
+	
+	public void setSnowFlake(Drawable drawable) {
+		snow_flake = drawable;
+//		snow_flake.setBounds(0, 0, snow_flake.getIntrinsicWidth(),
+//				snow_flake.getIntrinsicHeight());
+		snow_flake.setBounds(0, 0, 64, 64);
 	}
 
 }
