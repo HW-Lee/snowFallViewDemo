@@ -18,11 +18,12 @@ public class MainActivity extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		new DownloadSnowFlakeTask().execute("http://www.iconpng.com/download/png/44384");
+		new DownloadSnowFlakeTask().execute("http://www.iconpng.com/download/png/62225");
 		// http://www.iconpng.com/download/png/66500
 		// http://www.iconpng.com/download/png/65980
 		// http://www.iconpng.com/download/png/61328
 		// http://www.iconpng.com/download/png/44384
+		// http://www.iconpng.com/download/png/62225
 	}
 	
 	public class DownloadSnowFlakeTask extends AsyncTask<String, Void, Bitmap> {
