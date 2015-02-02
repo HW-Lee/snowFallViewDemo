@@ -100,22 +100,26 @@ public class SnowFallView extends View implements OnTouchListener {
 		// TODO Auto-generated method stub
 		switch (event.getAction()) {
 			case MotionEvent.ACTION_UP:
-				RelativeLayout.LayoutParams params;
-				if (flag) {
-					params = (RelativeLayout.LayoutParams)getLayoutParams();
-					params.addRule(RelativeLayout.ALIGN_PARENT_LEFT);
-					params.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
-					int squareLength = parentContext.getResources().getDisplayMetrics().widthPixels;
-					params.width = squareLength / 4;
-					params.height = squareLength / 4;
-				} else {
-					params = new RelativeLayout.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
-				}
-				flag = !flag;
-				setLayoutParams(params);
+				changeState();
 				break;
 		}
 		return true;
+	}
+	
+	public void changeState() {
+		RelativeLayout.LayoutParams params;
+		if (flag) {
+			params = (RelativeLayout.LayoutParams)getLayoutParams();
+			params.addRule(RelativeLayout.ALIGN_PARENT_LEFT);
+			params.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
+			int squareLength = parentContext.getResources().getDisplayMetrics().widthPixels;
+			params.width = squareLength / 4;
+			params.height = squareLength / 4;
+		} else {
+			params = new RelativeLayout.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
+		}
+		flag = !flag;
+		setLayoutParams(params);
 	}
 
 }
